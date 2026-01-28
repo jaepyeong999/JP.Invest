@@ -2,8 +2,18 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { NewsItem, CalendarEvent, Company } from "../types";
 
+// Safety check for process.env in browser environments
+const getApiKey = () => {
+  try {
+    return process.env.API_KEY || '';
+  } catch {
+    return '';
+  }
+};
+
 const getAIClient = () => {
-  return new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+  const apiKey = getApiKey();
+  return new GoogleGenAI({ apiKey });
 };
 
 export const getMarketAnalysis = async (query: string): Promise<string> => {
