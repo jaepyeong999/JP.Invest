@@ -1,9 +1,8 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { NewsItem, CalendarEvent, Company } from "../types";
 
-// Safety check for process.env in browser environments
 const getApiKey = () => {
+  // vite.config.ts에서 정의된 process.env.API_KEY가 빌드 타임에 주입됩니다.
   try {
     return process.env.API_KEY || '';
   } catch {
