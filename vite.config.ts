@@ -5,11 +5,12 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   define: {
-    // Vercel 환경 변수가 브라우저에서 process.env.API_KEY로 접근 가능하도록 정의
+    // Vercel에서 설정한 API_KEY를 브라우저 전역 변수로 치환
     'process.env.API_KEY': JSON.stringify(process.env.API_KEY || ''),
-    'process.env': {}
+    'process.env': '({})'
   },
   build: {
     outDir: 'dist',
+    sourcemap: false
   }
 });
